@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Google Flow 代理做 AI 漫劇：角色一致化｜社大 AI 漫劇設計</title>
+<meta name="description" content="社大 AI 漫劇設計：用 Google Flow 代理製作 AI 漫劇，並保持角色一致（網頁版教學投影片）">
+<meta name="theme-color" content="#2b2d33">
+<script>document.documentElement.classList.add('js')</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div id="progress" aria-hidden="true"><div id="bar"></div></div>
+<main id="stage">
+<div id="deck" aria-live="polite">
+
+<!-- ========== 1 封面 ========== -->
+<section class="slide hero" id="s1" data-title="封面">
+  <div class="decos" aria-hidden="true">
+    <svg class="deco deco-x" style="left:2em;top:1.3em" viewBox="0 0 10 10" aria-hidden="true"><path d="M2 2L8 8M8 2L2 8" stroke="#00A6ED" stroke-width="2.6" stroke-linecap="round"/></svg>
+    <div class="deco deco-arc" style="right:2em;top:-1.2em;transform:rotate(10deg);border-color:var(--g)"></div>
+    <div class="deco deco-ring" style="right:8em;bottom:-4.2em;border-color:var(--g);width:6.5em;height:6.5em;border-width:1.5em"></div>
+  </div>
+  <div class="g fill" style="--c:1fr 1.15fr;--gap:1.6em;--ai:stretch">
+    <div style="display:flex;flex-direction:column;justify-content:center;padding-bottom:2.4em">
+      <h1 class="hero-title">用 Flow 代理做 AI 漫劇<br>角色不換臉</h1>
+      <p class="hero-sub">先規劃 → 再建角色 → 再逐鏡確認<br>社大 AI 漫劇設計</p>
+    </div>
+    <div class="hero-photos">
+      <figure class="hero-main">
+        <div class="ph" style="--ar:4/3;--op:50% 40%"><img src="assets/img/classroom.webp" alt="教室裡三位學員一起看平板與筆電"></div>
+      </figure>
+      <figure class="hero-inset">
+        <div class="ph" style="--ar:3/4;--op:50% 20%"><img src="assets/img/lin-nightmarket.webp" alt="示範角色林曉晴站在夜市裡，穿芥末黃外套、背紅色斜背包"></div>
+        <figcaption>示範角色：林曉晴</figcaption>
+      </figure>
+    </div>
+  </div>
+  <div class="lecturer">講師 Lawrence Lin</div>
+</section>
+
+<!-- ========== 2 今日目標與學員前提 ========== -->
+<section class="slide" id="s2" data-title="今日目標與學員前提">
+  <div class="decos" aria-hidden="true">
+    <div class="deco deco-ring" style="right:-3.5em;top:-3.5em;border-color:var(--o)"></div>
+  </div>
+  <div class="g fill" style="--c:1.15fr 1fr;--gap:2em">
+    <div class="stack" style="--gap:1em;justify-content:center">
+      <h2 class="title">今日目標與學員前提</h2>
+      <p class="sub big">學會用代理先規劃、再逐鏡生成，<br>做出 3–5 鏡、林曉晴不換臉的短漫劇</p>
+      <div class="feat"><span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 7V3L4 9l6 6v-4c4 0 6.8 1.3 8.8 4.2C18.2 11 15 7.8 10 7.2V7z"/></svg></span>
+        <div class="body"><h4 class="o">手機／平板為主就可以</h4><p>App 與網頁都能用代理（以當天畫面為準）</p></div>
+      </div>
+      <div class="feat"><span class="ico y"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6H4v12h16V6zm-8 6L6.5 8h11L12 12z"/></svg></span>
+        <div class="body"><h4 class="yl">免費方案為主</h4><p>每天 50 點，用不完不累計</p></div>
+      </div>
+      <div class="feat"><span class="ico b"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 1 0 .01 18.01A9 9 0 0 0 12 3zm0 2c.7 0 2.2 1.8 2.6 5H9.4C9.8 6.8 11.3 5 12 5zm-4.7.9A13 13 0 0 0 5.1 10h3.1C8.5 8 7.9 6.4 7.3 5.9zM5.1 14a13 13 0 0 0 2.2 4.1c.6-.5 1.2-2.1 1.5-4.1H5.1zm4.3 0c.4 3.2 1.9 5 2.6 5s2.2-1.8 2.6-5H9.4zm5.6 0c.3 2 1 3.6 1.5 4.1A13 13 0 0 0 18.9 14h-3.1zm3.1-4h-3.1c-.3-2-1-3.6-1.5-4.1A13 13 0 0 1 18.9 10z"/></svg></span>
+        <div class="body"><h4 class="bl">示範角色：林曉晴</h4><p>約 24 歲、芥末黃針織外套，與上一課相同</p></div>
+      </div>
+    </div>
+    <div class="s2-photo">
+      <div class="ph-fill" style="--op:70% 50%"><img src="assets/img/phone-laptop.webp" alt="學員左手拿手機、前方是筆電，螢幕畫面看不清楚"></div>
+      <p class="caveat" style="text-align:right">示意圖，以上課當天畫面為準</p>
+      <div class="s2-bottom">
+        <div class="callout">代理＝<br>手機 App ＋<br>電腦網頁皆可</div>
+        <p class="small" style="margin:0;color:#444">講師 2026/11/24 實機確認最新版 App 已有代理；官方說明尚未更新，按鈕位置以上課當天畫面為準</p>
+      </div>
+    </div>
+  </div>
+  <div class="pageno">2</div>
+</section>
+
+<!-- ========== 3 免費每天 50 點 ========== -->
+<section class="slide" id="s3" data-title="免費每天 50 點，用不完就沒了">
+  <div class="decos" aria-hidden="true">
+    <svg class="deco deco-x" style="right:2.2em;top:1.4em" viewBox="0 0 10 10" aria-hidden="true"><path d="M2 2L8 8M8 2L2 8" stroke="#00A6ED" stroke-width="2.6" stroke-linecap="round"/></svg>
+  </div>
+  <div class="g fill" style="--c:.9fr 1.15fr;--gap:2em">
+    <div class="bleed-l" style="--op:50% 55%">
+      <img src="assets/img/five-coins.webp" alt="木桌上五枚硬幣與一支手機，手指點著硬幣">
+      <div class="cap-bar">Veo 3.1 Lite 一次 10 點 ≈ 每天 5 次</div>
+    </div>
+    <div class="stack" style="justify-content:center;--gap:1em">
+      <h2 class="title">免費每天 50 點，<br>用不完就沒了</h2>
+      <p class="sub">所有帳號每天都有 50 點；從當天第一次生成起算，沒用完不會累積到明天。</p>
+      <div class="g" style="--c:1fr 1fr;--mc:1fr 1fr;--gap:.8em">
+        <div class="chip c-o"><b>50 點</b><span>每天・所有帳號</span></div>
+        <div class="chip c-y"><b>不累計</b><span>隔天／下月歸零</span></div>
+      </div>
+      <div>
+        <p style="margin:0 0 .35em"><b>訂閱另有每月點數（不累計；價格以官網為準）：</b></p>
+        <p style="margin:0;line-height:1.7">Plus　NT$165／月　＋200 點<br>Pro　NT$650／月　＋1,000 點<br>Ultra　NT$3,300／月　＋10,000 點<br>Ultra　NT$6,500／月　＋25,000 點</p>
+      </div>
+    </div>
+  </div>
+  <div class="pageno">3</div>
+</section>
+
+<!-- ========== 4 尖峰時段也能做什麼 ========== -->
+<section class="slide" id="s4" data-title="尖峰時段也能做什麼">
+  <div class="g fill" style="--c:.78fr 1.22fr;--gap:2.2em">
+    <div class="bleed-l" style="--op:40% 30%">
+      <img src="assets/img/night-phone.webp" alt="晚上一位學員坐在桌前滑手機，牆上時鐘約十點，螢幕看不清楚">
+      <div class="cap-bar">晚上 10 點：先聊天、先生圖</div>
+    </div>
+    <div class="stack" style="justify-content:center;--gap:1.15em">
+      <h2 class="title">尖峰時段也能做什麼</h2>
+      <p class="sub">台灣時間約 22:00–01:00（世界標準時間 14:00–17:00）</p>
+      <div class="feat"><span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.2l2.4 5.1 5.6.7-4.1 3.9 1 5.6L12 16.2 7.1 18.5l1-5.6-4.1-3.9 5.6-.7z"/></svg></span>
+        <div class="body"><h4 class="o">可能不能做</h4><p>非訂閱者可能無法生成影片——別硬生成，以免空等或失敗</p></div>
+      </div>
+      <div class="feat"><span class="ico y"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 17.2V20h2.8l8.3-8.3-2.8-2.8L4 17.2zm14.7-8.5c.4-.4.4-1 0-1.4l-2-2a1 1 0 0 0-1.4 0l-1.6 1.6 2.8 2.8 2.2-2z"/></svg></span>
+        <div class="body"><h4 class="yl">仍然可以做</h4><p>生成圖像（目前不耗 Flow 點數，有每日張數上限）；<br>在手機 App 或網頁跟代理寫劇本、分鏡、代理指令</p></div>
+      </div>
+    </div>
+  </div>
+  <div class="pageno">4</div>
+</section>
+
+<!-- ========== 5 模型點數與 12/5 淘汰 ========== -->
+<section class="slide" id="s5" data-title="模型點數與 12/5 淘汰">
+  <div class="decos" aria-hidden="true">
+    <svg class="deco deco-x" style="left:22em;top:1.2em" viewBox="0 0 10 10" aria-hidden="true"><path d="M2 2L8 8M8 2L2 8" stroke="#00A6ED" stroke-width="2.6" stroke-linecap="round"/></svg>
+    <div class="deco deco-arc" style="left:-2em;bottom:-2.5em;transform:rotate(180deg);border-color:var(--g)"></div>
+  </div>
+  <div class="g fill" style="--c:.85fr 1.35fr;--gap:2em;--ai:stretch">
+    <div class="stack" style="justify-content:space-between">
+      <div class="s5-intro">
+        <h2 class="title">模型點數與<br>12/5 淘汰</h2>
+        <p class="sub">點數按「每次生成」計算：輸出數量設 1，一次出 2 個結果就扣兩次。數字以當天「設定」畫面為準。</p>
+      </div>
+      <div class="retire">
+        <h4>12 月 5 日淘汰，新作業別用</h4>
+        <ul style="list-style:none;margin:0;padding:0">
+          <li><span class="xmark">✕</span>Veo 3.1 Fast（每次 20 點）</li>
+          <li><span class="xmark">✕</span>Veo 3.1 Quality（每次 100 點）</li>
+          <li><span class="xmark">✕</span>Omni Flash 1.1</li>
+        </ul>
+      </div>
+    </div>
+    <div class="s5-bars">
+      <div class="pbar c-o">
+        <div><div class="nm">Veo 3.1 Lite</div><div class="pts">10 點</div></div>
+        <div class="mid">每次生成（8 秒）<br>4／6／8 秒同價</div>
+        <div class="right">一天約 5 次<br>成片首選</div>
+      </div>
+      <div class="pbar c-y">
+        <div><div class="nm">Omni 1.2 360p</div><div class="pts">1 點 / 秒</div></div>
+        <div class="mid">10 秒＝10 點<br>適合打草稿</div>
+        <div class="right">一天約 5 次<br>（10 秒鏡頭）</div>
+      </div>
+      <div class="pbar c-b">
+        <div><div class="nm">Omni 1.2 720p</div><div class="pts">3 點 / 秒</div></div>
+        <div class="mid">8 秒＝24 點<br>10 秒＝30 點</div>
+        <div class="right">一天約 2 次<br>最耗點</div>
+      </div>
+    </div>
+  </div>
+  <div class="pageno">5</div>
+</section>
+
+<!-- ========== 6 什麼是 Flow 代理 ========== -->
+<section class="slide" id="s6" data-title="什麼是 Flow 代理">
+  <div class="decos" aria-hidden="true">
+    <svg class="deco deco-x" style="right:1.5em;top:1.2em" viewBox="0 0 10 10" aria-hidden="true"><path d="M2 2L8 8M8 2L2 8" stroke="#00A6ED" stroke-width="2.6" stroke-linecap="round"/></svg>
+    <div class="deco deco-ring" style="right:2em;bottom:-4.5em;border-color:var(--g);width:6em;height:6em;border-width:1.6em"></div>
+    <div class="deco deco-arc" style="right:18em;bottom:-2.4em;border-color:var(--o)"></div>
+  </div>
+  <div class="g fill" style="--c:.85fr 1.2fr;--gap:2em">
+    <div class="stack" style="justify-content:center;--gap:.8em">
+      <h2 class="title">什麼是<br>Flow 代理</h2>
+      <ul class="dots big" style="color:#333">
+        <li>專案裡的 AI 協作對象</li>
+        <li>用說的請它規劃、生成、整理</li>
+        <li>全球所有使用者都能用，免費也行</li>
+        <li>手機 App 與網頁版都能用</li>
+        <li>對話存成專案「工作階段」</li>
+        <li>刪聊天不會刪媒體</li>
+      </ul>
+    </div>
+    <div class="grow">
+      <div class="ph-fill" style="--op:45% 30%"><img src="assets/img/over-shoulder.webp" alt="過肩拍攝學員看著手機，後方是筆電，螢幕畫面看不清楚"></div>
+      <p class="caveat">示意圖，以上課當天畫面為準<br>官方說明尚未更新，按鈕位置以當天 App／網頁為準</p>
+    </div>
+  </div>
+  <div class="pageno">6</div>
+</section>
+
+<!-- ========== 7 代理能做／不能做 ========== -->
+<section class="slide" id="s7" data-title="代理能做／不能做">
+  <div class="decos" aria-hidden="true">
+    <div class="deco" style="right:0;top:0;width:7em;height:3.2em;background:var(--g);border-bottom-left-radius:.6em"></div>
+  </div>
+  <div class="s7-top">
+    <div>
+      <h2 class="title">代理能做／不能做</h2>
+      <p class="sub">查詢（對話）目前不耗 Flow 點數，<br>但每天有查詢上限（數字未公布）</p>
+    </div>
+    <figure>
+      <div class="ph" style="--ar:16/9;--op:50% 50%"><img src="assets/img/sticky-notes.webp" alt="桌上兩堆便利貼，一手拿起粉紅色便利貼，旁有一支筆"></div>
+    </figure>
+  </div>
+  <div class="col3">
+    <div class="card">
+      <div class="hd c-o">能做</div>
+      <div class="bd"><ul class="ticks ora">
+        <li>規劃故事與分鏡</li>
+        <li>生成圖像與影片</li>
+        <li>編輯選取的素材</li>
+        <li>命名、收藏、代理指令</li>
+      </ul></div>
+    </div>
+    <div class="card">
+      <div class="hd c-y" style="color:#222">不要承諾</div>
+      <div class="bd"><ul class="ticks x">
+        <li>自動建立「角色」面板</li>
+        <li>@角色 在代理一定有效</li>
+        <li>綁定自訂語音</li>
+        <li>手機與網頁功能全相同</li>
+      </ul></div>
+    </div>
+    <div class="card">
+      <div class="hd c-b">課堂規定</div>
+      <div class="bd"><ul class="ticks blu">
+        <li>生成前確認設「一律」</li>
+        <li>對話免點 ≠ 生成免點</li>
+        <li>代理不會自動剪片</li>
+        <li>換臉要自己逐鏡看</li>
+      </ul></div>
+    </div>
+  </div>
+  <div class="pageno">7</div>
+</section>
+
+<!-- ========== 8 對話免點，生成要點 ========== -->
+<section class="slide" id="s8" data-title="對話免點，生成要點">
+  <div class="decos" aria-hidden="true">
+    <svg class="deco deco-x" style="right:1.8em;top:1.2em" viewBox="0 0 10 10" aria-hidden="true"><path d="M2 2L8 8M8 2L2 8" stroke="#00A6ED" stroke-width="2.6" stroke-linecap="round"/></svg>
+    <div class="deco deco-arc" style="left:-2.2em;bottom:-2.6em;transform:rotate(180deg);border-color:var(--g)"></div>
+  </div>
+  <div class="g fill" style="--c:1.05fr 1fr;--gap:1.6em">
+    <div class="grow" style="--gap:.7em">
+      <div class="var-rows">
+        <div class="var-top">
+        <figure><div class="ph" style="--op:50% 18%"><img src="assets/img/lin-light-1.webp" alt="林曉晴在暖色夜市燈光下的劇照"><span class="dot" aria-hidden="true"></span></div></figure>
+        <figure><div class="ph" style="--op:50% 18%"><img src="assets/img/lin-light-2.webp" alt="林曉晴在霓虹燈下的劇照"><span class="dot" aria-hidden="true"></span></div></figure>
+        <figure><div class="ph" style="--op:50% 18%"><img src="assets/img/lin-light-3.webp" alt="林曉晴在黃昏燈光下的劇照"><span class="dot" aria-hidden="true"></span></div></figure>
+        </div>
+        <div class="var-bot">
+        <figure><div class="ph" style="--op:50% 18%"><img src="assets/img/lin-light-4.webp" alt="林曉晴在燈泡暖光下的劇照"><span class="dot" aria-hidden="true"></span></div></figure>
+        <figure><div class="ph" style="--op:50% 18%"><img src="assets/img/lin-light-5.webp" alt="林曉晴在紅色燈籠光下的劇照"><span class="dot" aria-hidden="true"></span></div></figure>
+        </div>
+      </div>
+      <div class="bar-note c-r center">● 5 種光線變化＝可能 50 點</div>
+    </div>
+    <div class="stack" style="justify-content:center;--gap:1em">
+      <h2 class="title">對話免點，生成要點<br>先確認再同意</h2>
+      <p class="sub">代理查詢目前不耗 Flow 點數；生成影片照一般規則扣點，生成的媒體自動存進目前開啟的專案。</p>
+      <div class="g" style="--c:1fr 1fr;--mc:1fr 1fr;--gap:.8em">
+        <div class="chip c-o"><b>0 點</b><span>對話、規劃</span></div>
+        <div class="chip c-y"><b>50 點</b><span>5 種影片變化</span></div>
+      </div>
+      <p style="margin:0;font-size:1.05em">「生成前請先確認」設為「一律」：先看它要生成幾支、用哪個模型，再按同意。設「永不」會直接扣點。</p>
+    </div>
+  </div>
+  <div class="pageno">8</div>
+</section>
+
+<!-- ========== 9 完整流程總覽 ========== -->
+<section class="slide" id="s9" data-title="完整流程總覽">
+  <div class="decos" aria-hidden="true">
+    <div class="deco deco-arc" style="right:1em;top:-1.5em;transform:rotate(20deg);border-color:var(--g)"></div>
+    <svg class="deco deco-x" style="right:2em;top:6em" viewBox="0 0 10 10" aria-hidden="true"><path d="M2 2L8 8M8 2L2 8" stroke="#00A6ED" stroke-width="2.6" stroke-linecap="round"/></svg>
+  </div>
+  <div class="g" style="--c:1.2fr .9fr;--gap:1.4em;--ai:center">
+    <div>
+      <h2 class="title">完整流程總覽</h2>
+      <p class="sub">先聊（不耗點）→ 先圖 → 先建角色 → 再一鏡一確認</p>
+    </div>
+    <figure>
+      <div class="ph" style="--ar:16/9;--op:50% 50%"><img src="assets/img/workflow-table.webp" alt="木桌上放著分鏡筆記本、林曉晴參考照片、筆電、手機與耳機"></div>
+    </figure>
+  </div>
+  <div class="proc">
+    <div class="step"><span class="n">01</span><h4 class="o">故事靈感</h4><p>代理對話<br>不耗點</p></div>
+    <div class="step"><span class="n y">02</span><h4 class="yl">劇本分鏡</h4><p>只要文字<br>3–5 鏡</p></div>
+    <div class="step"><span class="n b">03</span><h4 class="bl">角色聖經</h4><p>寫外觀服裝<br>出參考圖</p></div>
+    <div class="step"><span class="n gn">04</span><h4 class="gr">建立角色</h4><p>角色面板<br>寫代理指令</p></div>
+    <div class="step"><span class="n">05</span><h4 class="o">逐鏡生成</h4><p>一次一鏡<br>輸出設 1</p></div>
+    <div class="step"><span class="n y">06</span><h4 class="yl">檢查</h4><p>臉、髮、衣<br>失敗只重做</p></div>
+    <div class="step"><span class="n b">07</span><h4 class="bl">聲音</h4><p>角色語音<br>或後製配音</p></div>
+    <div class="step"><span class="n gn">08</span><h4 class="gr">剪輯成片</h4><p>場景建構<br>或 CapCut</p></div>
+  </div>
+  <div class="bar-note" style="background:#F3F3F3;margin-top:.4em"><span class="o">重點</span>　只有第 5 步生成影片耗點；生圖目前不耗 Flow 點數（有每日張數上限）</div>
+  <div class="pageno">9</div>
+</section>
+
+<!-- ========== 10 先請代理寫劇本與分鏡 ========== -->
+<section class="slide" id="s10" data-title="先請代理寫劇本與分鏡">
+  <div class="decos" aria-hidden="true">
+    <svg class="deco deco-x" style="right:1.5em;top:1.2em" viewBox="0 0 10 10" aria-hidden="true"><path d="M2 2L8 8M8 2L2 8" stroke="#00A6ED" stroke-width="2.6" stroke-linecap="round"/></svg>
+    <div class="deco deco-ring" style="right:2.5em;top:8em;border-color:var(--g);width:5em;height:5em;border-width:1.5em"></div>
+    <div class="deco deco-arc" style="right:16em;bottom:-2.4em;border-color:var(--o)"></div>
+  </div>
+  <div class="g fill" style="--c:.85fr 1.25fr;--gap:2em">
+    <div class="stack" style="justify-content:center;--gap:.8em">
+      <h2 class="title">先請代理寫<br>劇本與分鏡</h2>
+      <div>
+        <p class="sub" style="margin-bottom:.4em">示範《夜市的氣味》4 鏡：</p>
+        <ol style="margin:0;padding-left:1.2em;font-size:1.12em;line-height:1.7;color:#333">
+          <li>走進夜市（無對白）</li>
+          <li>小吃攤前聞到氣味</li>
+          <li>巷口等朋友、看手機</li>
+          <li>微笑走進燈火（無對白）</li>
+        </ol>
+        <p style="margin:.6em 0 0;font-weight:700">定稿前不要同意任何生成</p>
+      </div>
+    </div>
+    <div class="grow">
+      <div class="ph-fill" style="--op:50% 45%">
+        <img src="assets/img/storyboard-market.webp" alt="夜市燈籠前，一隻手在紙上畫四格分鏡">
+        <div class="cap-bar">3–5 鏡・只要文字</div>
+      </div>
+      <p class="caveat">每鏡約 8 秒：鏡號、景別、畫面、服裝、對白、英文提示</p>
+    </div>
+  </div>
+  <div class="pageno">10</div>
+</section>
+
+<!-- ========== 11 角色聖經與參考圖 ========== -->
+<section class="slide" id="s11" data-title="角色聖經與參考圖：林曉晴">
+  <h2 class="title">角色聖經與參考圖：林曉晴</h2>
+  <p class="sub">約 24 歲成年角色・寫實真人照・全片鎖定</p>
+  <div class="bible-wrap">
+    <div class="bible-side">
+      <div class="bible-item">
+        <h4 class="c-o">髮型與耳釘</h4>
+        <p>及肩黑直髮＋空氣瀏海<br>銀色圓形小耳釘</p>
+      </div>
+      <div class="bible-item">
+        <h4 class="c-b">紅色斜背包</h4>
+        <p>紅色小皮革斜背包<br>背帶在左肩</p>
+      </div>
+      <p class="caveat">目前生圖不耗 Flow 點數（有每日張數上限）</p>
+    </div>
+    <div class="portrait">
+      <div class="ph" style="--op:50% 15%"><img src="assets/img/lin-fullbody.webp" alt="林曉晴全身參考照：芥末黃針織外套、白 T、深藍牛仔褲、白帆布鞋、紅色斜背包、左手細黑錶"></div>
+    </div>
+    <div class="bible-side">
+      <div class="bible-item right">
+        <h4 class="c-y" style="color:#222">外套與穿搭</h4>
+        <p>芥末黃針織外套＋白 T<br>深藍直筒牛仔褲＋白帆布鞋</p>
+      </div>
+      <div class="bible-item right">
+        <h4 class="c-g">左手細黑錶</h4>
+        <p>細黑錶帶<br>戴在左手</p>
+      </div>
+      <div class="bar-note c-o center" style="font-size:.95em">生圖用 Nano Banana 2 Lite・只出 1 張</div>
+    </div>
+  </div>
+  <div class="pageno">11</div>
+</section>
+
+<!-- ========== 12 在專案建立角色 ========== -->
+<section class="slide" id="s12" data-title="在專案建立角色，並寫代理指令">
+  <h2 class="title">在專案建立角色，並寫代理指令</h2>
+  <div class="g fill" style="--c:.85fr 1.25fr;--gap:1.6em;--ai:stretch">
+    <div class="dash-card">
+      <b>上課當天<br>實機示範</b>
+      <p>按鈕位置以上課當天畫面為準</p>
+    </div>
+    <div class="stairs">
+      <div class="stair">
+        <div class="txt"><h4 style="color:var(--o)">4 同一專案做完</h4><p>之後逐鏡生成都在這個專案裡</p></div>
+        <div class="blk c-o">4</div>
+      </div>
+      <div class="stair">
+        <div class="txt"><h4 style="color:#c48a00">3 寫代理指令</h4><p>參考圖＋外觀鎖定指南（範本 C）</p></div>
+        <div class="blk c-y">3</div>
+      </div>
+      <div class="stair">
+        <div class="txt"><h4 class="bl">2 建立角色</h4><p>1–2 張參考圖、命名「林曉晴」</p></div>
+        <div class="blk c-b">2</div>
+      </div>
+      <div class="stair">
+        <div class="txt"><h4 class="gr">1 開同一個專案</h4><p>手機 App 或網頁都能開代理</p></div>
+        <div class="blk c-g">1</div>
+      </div>
+    </div>
+  </div>
+  <p class="caveat">建立角色：官方完整步驟寫在電腦版；若當天手機 App 有入口，也可在手機完成</p>
+  <div class="pageno">12</div>
+</section>
+
+<!-- ========== 13 請代理逐鏡生成 ========== -->
+<section class="slide" id="s13" data-title="請代理逐鏡生成">
+  <div class="g fill" style="--c:.78fr 1.22fr;--gap:2.2em">
+    <div class="bleed-l" style="--op:50% 18%">
+      <img src="assets/img/lin-walk.webp" alt="林曉晴穿芥末黃外套走進夜市，紅色斜背包在左肩">
+      <div class="cap-bar">第 1 鏡：走進夜市</div>
+    </div>
+    <div class="stack" style="justify-content:center;--gap:1.1em">
+      <h2 class="title">請代理逐鏡生成</h2>
+      <p class="sub">一次一鏡、一次一個結果；手機 App 或網頁皆可</p>
+      <div class="feat"><span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.2l2.4 5.1 5.6.7-4.1 3.9 1 5.6L12 16.2 7.1 18.5l1-5.6-4.1-3.9 5.6-.7z"/></svg></span>
+        <div class="body"><h4 class="o">加入角色參考</h4><p>拖入參考圖或選取專案素材；<br>已建角色就試 @角色名（以當天畫面為準）</p></div>
+      </div>
+      <div class="feat"><span class="ico y"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 17.2V20h2.8l8.3-8.3-2.8-2.8L4 17.2zm14.7-8.5c.4-.4.4-1 0-1.4l-2-2a1 1 0 0 0-1.4 0l-1.6 1.6 2.8 2.8 2.2-2z"/></svg></span>
+        <div class="body"><h4 class="yl">先看確認，再同意</h4><p>看清模型、秒數、輸出數量 1、預估點數；<br>不對就拒絕，改設定再來</p></div>
+      </div>
+      <p class="caveat">第 1 鏡過關（臉、髮、衣、包、鞋、耳釘、手錶都對）再做第 2 鏡</p>
+    </div>
+  </div>
+  <div class="pageno">13</div>
+</section>
+
+<!-- ========== 14 檢查一致性 ========== -->
+<section class="slide" id="s14" data-title="檢查一致性，失敗只改那一鏡">
+  <div class="decos" aria-hidden="true">
+    <div class="deco deco-arc" style="right:-1.2em;top:-1.6em;transform:rotate(80deg);border-color:var(--g)"></div>
+  </div>
+  <h2 class="title">檢查一致性，失敗只改那一鏡</h2>
+  <p class="sub">每鏡都檢查：臉、髮、外套、褲、鞋、紅包、耳釘、左手錶</p>
+  <div class="four">
+    <div>
+      <div class="ph" style="--op:50% 18%"><img src="assets/img/lin-light-1.webp" alt="通過的林曉晴劇照，外套為芥末黃、紅包在左肩"><span class="badge">通過 ✓</span></div>
+      <div class="card c-o"><h4>通過</h4><p><b>8 項都對</b><br>臉型年齡、瀏海、芥末黃外套、紅包都在</p></div>
+    </div>
+    <div>
+      <div class="ph" style="--op:50% 18%"><img src="assets/img/fail-color.webp" alt="教學示意：林曉晴外套變成藍色"><span class="badge">教學示意</span></div>
+      <div class="card c-y"><h4>外套變色</h4><p><b>原因：顏色寫太含糊</b><br>寫清楚芥末黃針織，再拖入對的參考圖</p></div>
+    </div>
+    <div>
+      <div class="ph" style="--op:50% 18%"><img src="assets/img/fail-accessories.webp" alt="教學示意：林曉晴多了帽子與眼鏡"><span class="badge">教學示意</span></div>
+      <div class="card c-b"><h4>多了配件</h4><p><b>原因：提示太長</b><br>重申外觀鎖定，不加帽子、眼鏡</p></div>
+    </div>
+    <div>
+      <div class="ph" style="--op:50% 18%"><img src="assets/img/lin-light-3.webp" alt="重做後通過的林曉晴劇照"><span class="badge">重做後通過 ✓</span></div>
+      <div class="card c-g"><h4>只重做那一鏡</h4><p><b>範本 F</b><br>失敗片不當新參考，改回正確參考圖</p></div>
+    </div>
+  </div>
+  <div class="pageno">14</div>
+</section>
+
+<!-- ========== 15 聲音與剪輯成片 ========== -->
+<section class="slide" id="s15" data-title="聲音與剪輯成片">
+  <div class="decos" aria-hidden="true">
+    <div class="deco" style="right:0;top:0;width:14em;height:4.2em;background:var(--y);border-bottom-left-radius:1em"></div>
+    <div class="deco deco-arc" style="right:1.2em;top:5em;transform:rotate(20deg);border-color:var(--g)"></div>
+  </div>
+  <div class="g fill" style="--c:1.05fr 1fr;--gap:2em">
+    <div class="stack" style="justify-content:center;--gap:1em">
+      <h2 class="title">聲音與剪輯成片</h2>
+      <p class="sub">代理不保證語音一致：能做就做，做不到就降級</p>
+      <div class="feat"><span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 7V3L4 9l6 6v-4c4 0 6.8 1.3 8.8 4.2C18.2 11 15 7.8 10 7.2V7z"/></svg></span>
+        <div class="body"><h4 class="o">聲音</h4><p>角色語音或 Omni 自訂語音；<br>做不到就輕聲／無對白，再後製配音</p></div>
+      </div>
+      <div class="feat"><span class="ico y"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 17.2V20h2.8l8.3-8.3-2.8-2.8L4 17.2zm14.7-8.5c.4-.4.4-1 0-1.4l-2-2a1 1 0 0 0-1.4 0l-1.6 1.6 2.8 2.8 2.2-2z"/></svg></span>
+        <div class="body"><h4 class="yl">剪輯</h4><p>電腦：場景建構排列、修剪、下載<br>手機：存到相簿，用 CapCut 接鏡、加字幕<br>（CapCut 非 Flow 官方工具，不耗點）</p></div>
+      </div>
+    </div>
+    <div class="grow">
+      <div class="ph-fill" style="--ar:16/9;--op:60% 50%"><img src="assets/img/headphones.webp" alt="木桌上的耳機，一隻手拿著手機，後方是筆電，螢幕看不清楚"></div>
+      <div class="s15-bottom">
+        <div class="bar-note c-y center">能做再做<br>地區與方案限制以上課當天為準</div>
+        <figure class="in">
+          <div class="ph" style="--op:50% 18%"><img src="assets/img/lin-light-4.webp" alt="林曉晴在夜市小吃攤前的劇照，作為第 2 鏡對白示意"></div>
+          <figcaption>第 2 鏡：一句對白</figcaption>
+        </figure>
+      </div>
+    </div>
+  </div>
+  <div class="pageno">15</div>
+</section>
+
+<!-- ========== 16 可複製的代理指令 ========== -->
+<section class="slide" id="s16" data-title="可複製的代理指令（精選）">
+  <div class="decos" aria-hidden="true">
+    <div class="deco" style="right:0;top:0;width:8em;height:5em;background:var(--y);border-bottom-left-radius:1em"></div>
+  </div>
+  <h2 class="title">可複製的代理指令（精選）</h2>
+  <p class="sub">先讀懂中文，再複製英文送出；完整全文見講義第 6 節</p>
+  <div class="g fill" style="--c:1.45fr .8fr;--gap:1.3em">
+    <div class="prompts">
+      <div class="prompt-card">
+        <h4 class="o"><span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20s-7-4.4-7-9.1C5 8 7 6 9.2 6c1.3 0 2.4.6 2.8 1.6C12.4 6.6 13.5 6 14.8 6 17 6 19 8 19 10.9 19 15.6 12 20 12 20z"/></svg></span> 範本 A｜只規劃不生成</h4>
+        <p>現在只要文字，不要生成圖像或影片，也不要給我多種變化。</p>
+        <p class="en">Text only for now. Do not generate any images or videos. Do not create variations.</p>
+      </div>
+      <div class="prompt-card">
+        <h4 class="yl"><span class="ico y"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="5"/></svg></span> 範本 C｜代理指令鎖定句</h4>
+        <p>本專案只要出現林曉晴，就必須是同一位約 24 歲台灣女性。</p>
+        <p class="en">Whenever Lin Hsiao-ching appears in this project, she must be the same 24-year-old adult Taiwanese woman.</p>
+      </div>
+      <div class="prompt-card">
+        <h4 class="bl"><span class="ico b"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.2l2.4 5.1 5.6.7-4.1 3.9 1 5.6L12 16.2 7.1 18.5l1-5.6-4.1-3.9 5.6-.7z"/></svg></span> 範本 D｜只生第 1 鏡</h4>
+        <p>請只生成第 1 鏡，1 個結果，不要變化版本；保持人物完全一致。</p>
+        <p class="en">Generate shot 1 only. One result. No variations. Keep identity and wardrobe locked.</p>
+      </div>
+      <div class="prompt-card">
+        <h4 class="gr"><span class="ico gn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 18V9h3v9H5zm5.5 0V5h3v13h-3zM16 18v-6h3v6h-3z"/></svg></span> 範本 F｜只重做失敗那鏡</h4>
+        <p>不要再用這支失敗影片當外觀參考；只重做這一鏡，1 個結果。</p>
+        <p class="en">Do not use this failed clip as an appearance reference. Regenerate this shot only, one result.</p>
+      </div>
+    </div>
+    <div class="grow">
+      <div class="ph-fill" style="--op:70% 40%"><img src="assets/img/prompt-sheet.webp" alt="印好的雙語指令單用夾子固定在桌上，一隻手拿著手機對準文件"></div>
+    </div>
+  </div>
+  <div class="pageno">16</div>
+</section>
+
+<!-- ========== 17 一部短劇要幾點、幾天 ========== -->
+<section class="slide" id="s17" data-title="一部短劇要幾點、幾天">
+  <div class="decos" aria-hidden="true">
+    <div class="deco deco-ring" style="right:-2em;top:-3em;border-color:var(--o);width:7em;height:7em;border-width:1.8em"></div>
+  </div>
+  <div class="g fill" style="--c:1.15fr .95fr;--gap:1.6em">
+    <div class="grow" style="--gap:1em">
+      <div class="s17-panel">
+        <h2>一部短劇要幾點、幾天</h2>
+        <div class="s17-big">
+          <span style="padding-bottom:.5em">4 鏡 × Lite 10 點</span>
+        </div>
+        <div class="s17-big">
+          <b>40 點</b>
+          <span>再留 10 點重做一鏡<br>＝50 點，剛好一天</span>
+        </div>
+        <p class="pre">前提：免費 50 點、輸出 1、Veo 3.1 Lite 8 秒、生成成功</p>
+      </div>
+      <div class="plan4">
+        <div class="feat"><span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 17.2V20h2.8l8.3-8.3-2.8-2.8L4 17.2zm14.7-8.5c.4-.4.4-1 0-1.4l-2-2a1 1 0 0 0-1.4 0l-1.6 1.6 2.8 2.8 2.2-2z"/></svg></span>
+          <div class="body"><h4 class="o">3 鏡最保險</h4><p>30 點，還能重做 2 次</p></div>
+        </div>
+        <div class="feat"><span class="ico y"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 12a3.5 3.5 0 1 0-0.01-7.01A3.5 3.5 0 0 0 12 12zm-6 8v-1.6C6 16.2 8.2 15 12 15s6 1.2 6 3.4V20H6zm11.5-9.5a3 3 0 1 0-0.01-6.01 3 3 0 0 0 .01 6.01zM18 20v-1.6c0-1.3-.6-2.3-1.6-3.1 2.2.3 4.6 1.2 4.6 3.1V20h-3z"/></svg></span>
+          <div class="body"><h4 class="yl">5 鏡沒空間</h4><p>50 點用完，不能重做</p></div>
+        </div>
+        <div class="feat"><span class="ico b"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19.4 13a7.8 7.8 0 0 0 0-2l2-1.5-2-3.4-2.4.7a8 8 0 0 0-1.7-1L15 3h-6l-.3 2.8a8 8 0 0 0-1.7 1L8.6 6.1 4.6 9.5 6.6 11a7.8 7.8 0 0 0 0 2l-2 1.5 2 3.4 2.4-.7a8 8 0 0 0 1.7 1L9 21h6l.3-2.8a8 8 0 0 0 1.7-1l2.4.7 2-3.4-2-1.5zM12 15.2A3.2 3.2 0 1 1 12 8.8a3.2 3.2 0 0 1 0 6.4z"/></svg></span>
+          <div class="body"><h4 class="bl">重做多就拆 2 天</h4><p>第 1 天 1–2 鏡，第 2 天 3–4 鏡</p></div>
+        </div>
+        <div class="feat"><span class="ico gn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.2l2.4 5.1 5.6.7-4.1 3.9 1 5.6L12 16.2 7.1 18.5l1-5.6-4.1-3.9 5.6-.7z"/></svg></span>
+          <div class="body"><h4 class="gr">尖峰先做文字與圖</h4><p>對話、生圖 0 Flow 點</p></div>
+        </div>
+      </div>
+    </div>
+    <div style="display:flex;align-items:center;justify-content:center">
+      <div class="pie-wrap" role="img" aria-label="圓餅圖：4 鏡成片 40 點，重做 1 次 10 點">
+        <div class="pie"></div>
+        <span class="pie-lab pie-lab-g">重做 1 次<br>10 點</span>
+        <span class="pie-lab pie-lab-o">4 鏡成片<br>40 點</span>
+      </div>
+    </div>
+  </div>
+  <div class="pageno">17</div>
+</section>
+
+<!-- ========== 18 常見失敗與修正 ========== -->
+<section class="slide" id="s18" data-title="常見失敗與修正">
+  <div class="decos" aria-hidden="true">
+    <div class="deco deco-arc" style="right:-1.2em;top:-1.8em;transform:rotate(80deg);border-color:var(--g)"></div>
+  </div>
+  <h2 class="title">常見失敗與修正</h2>
+  <div class="g fill" style="--c:1.5fr .7fr;--gap:1.4em">
+    <div class="fail-list">
+      <div class="fail-row"><span class="n">01</span><span class="tag c-o">換臉</span><span class="desc">回到參考圖、一次一鏡，試 @角色</span><span class="key">範本 D／E</span></div>
+      <div class="fail-row"><span class="n y">02</span><span class="tag c-y">外套變色</span><span class="desc">寫清楚芥末黃針織，拖入對的參考圖</span><span class="key">範本 F</span></div>
+      <div class="fail-row"><span class="n b">03</span><span class="tag c-b">一次 5 種變化</span><span class="desc">拒絕批次變化；確認設一律、輸出 1</span><span class="key">≈50 點</span></div>
+      <div class="fail-row"><span class="n gn">04</span><span class="tag c-g">尖峰硬生影片</span><span class="desc">22:00–01:00 先做文字與生圖</span><span class="key">範本 H</span></div>
+      <div class="fail-row"><span class="n">05</span><span class="tag c-o">代理選錯模型</span><span class="desc">確認時改回 Lite 或 Omni 360p</span><span class="key">看確認卡</span></div>
+      <div class="fail-row"><span class="n y">06</span><span class="tag c-y">找不到代理按鈕</span><span class="desc">先更新 App；以當天畫面為準，仍沒有改用網頁</span><span class="key">更新 App</span></div>
+    </div>
+    <div class="s18-photos">
+      <figure>
+        <div class="ph" style="--op:50% 18%"><img src="assets/img/drift-1.webp" alt="教學示意：角色臉與髮型走樣"></div>
+        <figcaption>教學示意：換臉</figcaption>
+      </figure>
+      <figure>
+        <div class="ph" style="--op:50% 18%"><img src="assets/img/drift-3.webp" alt="教學示意：角色外套變成風衣、造型不一致"></div>
+        <figcaption>教學示意：換衣</figcaption>
+      </figure>
+    </div>
+  </div>
+  <div class="pageno">18</div>
+</section>
+
+<!-- ========== 19 課堂練習 ========== -->
+<section class="slide" id="s19" data-title="課堂練習">
+  <div class="decos" aria-hidden="true">
+    <div class="deco deco-arc" style="right:-1em;top:-1.4em;transform:rotate(10deg);border-color:var(--g)"></div>
+  </div>
+  <div class="g fill" style="--c:1.05fr 1.05fr;--gap:1.8em">
+    <div class="stack" style="justify-content:center;--gap:.85em">
+      <h2 class="title">課堂練習</h2>
+      <p class="sub">先對話、再 1 張圖、最後只准 1 鏡</p>
+      <div class="feat"><span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 17.2V20h2.8l8.3-8.3-2.8-2.8L4 17.2zm14.7-8.5c.4-.4.4-1 0-1.4l-2-2a1 1 0 0 0-1.4 0l-1.6 1.6 2.8 2.8 2.2-2z"/></svg></span>
+        <div class="body"><h4 class="o">練習一｜只對話　約 15 分・0 點</h4><p>範本 A 寫《夜市的氣味》4 鏡分鏡，檢查外套顏色、年齡有沒有被改</p></div>
+      </div>
+      <div class="feat"><span class="ico y"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 12a3.5 3.5 0 1 0-0.01-7.01A3.5 3.5 0 0 0 12 12zm-6 8v-1.6C6 16.2 8.2 15 12 15s6 1.2 6 3.4V20H6zm11.5-9.5a3 3 0 1 0-0.01-6.01 3 3 0 0 0 .01 6.01zM18 20v-1.6c0-1.3-.6-2.3-1.6-3.1 2.2.3 4.6 1.2 4.6 3.1V20h-3z"/></svg></span>
+        <div class="body"><h4 class="yl">練習二｜1 張參考圖＋代理指令　15–20 分</h4><p>範本 C 生 1 張（0 Flow 點），全班核對頭髮、外套、紅包、耳釘、手錶</p></div>
+      </div>
+      <div class="feat"><span class="ico b"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19.4 13a7.8 7.8 0 0 0 0-2l2-1.5-2-3.4-2.4.7a8 8 0 0 0-1.7-1L15 3h-6l-.3 2.8a8 8 0 0 0-1.7 1L8.6 6.1 4.6 9.5 6.6 11a7.8 7.8 0 0 0 0 2l-2 1.5 2 3.4 2.4-.7a8 8 0 0 0 1.7 1L9 21h6l.3-2.8a8 8 0 0 0 1.7-1l2.4.7 2-3.4-2-1.5zM12 15.2A3.2 3.2 0 1 1 12 8.8a3.2 3.2 0 0 1 0 6.4z"/></svg></span>
+        <div class="body"><h4 class="bl">練習三｜只准第 1 鏡　約 10 點</h4><p>範本 D 先一起看確認卡再同意；失敗用範本 F 重做一次（再 10 點）</p></div>
+      </div>
+      <div class="feat"><span class="ico gn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.2l2.4 5.1 5.6.7-4.1 3.9 1 5.6L12 16.2 7.1 18.5l1-5.6-4.1-3.9 5.6-.7z"/></svg></span>
+        <div class="body"><h4 class="gr">下課前不要連做第 2–4 鏡</h4><p>把點數留給作業；按鈕位置以上課當天畫面為準</p></div>
+      </div>
+    </div>
+    <div class="grow">
+      <div class="ph-fill" style="--op:50% 40%">
+        <img src="assets/img/classroom-earring.webp" alt="三位學員圍著桌子看一張林曉晴全身參考圖與手機">
+        <div class="cap-bar">分組檢查：耳釘在不在？紅包在左肩嗎？</div>
+      </div>
+    </div>
+  </div>
+  <div class="pageno">19</div>
+</section>
+
+<!-- ========== 20 作業 ========== -->
+<section class="slide closing" id="s20" data-title="作業：2 天完成 3–4 鏡">
+  <div class="decos" aria-hidden="true">
+    <div class="deco deco-ring" style="left:22em;top:-3em;border-color:var(--g);width:6em;height:6em;border-width:1.5em"></div>
+    <div class="deco deco-ring" style="left:26em;top:-1.2em;border-color:var(--y);width:4.2em;height:4.2em;border-width:1.1em"></div>
+    <div class="deco deco-ring" style="left:-3em;bottom:7em;border-color:var(--y);width:7em;height:7em;border-width:1.8em"></div>
+  </div>
+  <h2 class="title">作業：2 天完成 3–4 鏡</h2>
+  <div class="g fill" style="--c:1.2fr .85fr;--gap:1.4em;--ai:stretch">
+    <div class="hw-card">
+      <h3>繳交清單（沿用《夜市的氣味》，同一套芥末黃服裝）</h3>
+      <ul class="checks">
+        <li class="checks-row"><span>分鏡表</span><span>角色參考圖</span><span>代理指令截圖</span></li>
+        <li>各鏡最終影片（接成短片、加字幕）</li>
+        <li>走樣與修正說明（100–200 字）</li>
+        <li>點數紀錄：哪天、幾點、哪個模型</li>
+      </ul>
+      <p class="score-line">評分重點：角色看起來是不是同一人</p>
+    </div>
+    <div class="grow">
+      <div class="ph-fill" style="--op:50% 18%;border:3px solid #fff">
+        <img src="assets/img/lin-walkaway.webp" alt="林曉晴在夜市燈火中微笑走開，作為第 4 鏡示意">
+        <div class="cap-bar">第 4 鏡：微笑走開</div>
+      </div>
+    </div>
+  </div>
+  <p class="caveat" style="margin:.7em 0 .2em">點數與按鈕以上課當天畫面為準</p>
+  <div class="qr-row">
+    <div class="qr">
+      <a href="https://support.google.com/flow/answer/17093911?hl=zh-Hant" target="_blank" rel="noopener"><img src="assets/img/qr-agent.png" alt="QR：代理使用說明"></a>
+      <div><b>代理使用說明</b><a href="https://support.google.com/flow/answer/17093911?hl=zh-Hant" target="_blank" rel="noopener">Flow 說明中心（繁中）</a></div>
+    </div>
+    <div class="qr">
+      <a href="https://support.google.com/flow/answer/16526234?hl=zh-Hant" target="_blank" rel="noopener"><img src="assets/img/qr-credits.png" alt="QR：點數管理說明"></a>
+      <div><b>點數管理說明</b><a href="https://support.google.com/flow/answer/16526234?hl=zh-Hant" target="_blank" rel="noopener">每日 50 點、尖峰規則</a></div>
+    </div>
+    <div class="qr">
+      <a href="https://flow.google.com/" target="_blank" rel="noopener"><img src="assets/img/qr-flow.png" alt="QR：Google Flow 入口"></a>
+      <div><b>Google Flow 入口</b><a href="https://flow.google.com/" target="_blank" rel="noopener">flow.google.com</a></div>
+    </div>
+  </div>
+</section>
+
+</div>
+</main>
+<nav id="controls" aria-label="投影片導覽">
+  <button id="prev" type="button" aria-label="上一頁">‹ 上一頁</button>
+  <span id="counter" aria-live="polite">1 / 20</span>
+  <button id="next" type="button" aria-label="下一頁">下一頁 ›</button>
+</nav>
+<script src="js/main.js"></script>
+</body>
+</html>
